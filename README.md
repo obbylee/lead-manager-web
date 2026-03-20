@@ -1,36 +1,200 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Lead Manager App
 
-## Getting Started
+A simple full-stack Lead Management application built with:
 
-First, run the development server:
+- Frontend: Next.js (App Router), Tailwind CSS, shadcn/ui
+- Backend: Node.js, Express
+- Database: PostgreSQL with Prisma ORM
+
+---
+
+## 🚀 Features
+
+- Create new leads
+- View all leads
+- Status tracking:
+  - New
+  - Engaged
+  - Proposal Sent
+  - Closed-Won
+  - Closed-Lost
+
+- Clean, responsive UI
+- REST API backend
+
+---
+
+## 🧱 Project Structure
+
+- backend → Express API
+- frontend → Next.js UI
+
+---
+
+## ⚙️ Backend Setup
+
+### 1. Install dependencies
+
+```bash
+cd backend
+npm install
+```
+
+### 2. Environment variables
+
+Create a `.env` file:
+
+```env
+DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE"
+```
+
+Example:
+
+```env
+DATABASE_URL="postgresql://postgres:123456@localhost:5432/lead_manager"
+```
+
+### 3. Prisma setup
+
+```bash
+npx prisma migrate dev
+npx prisma generate
+```
+
+(Optional seed)
+
+```bash
+npx prisma db seed
+```
+
+### 4. Run backend
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Backend runs at:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+[http://localhost:3000](http://localhost:3000)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🎨 Frontend Setup
 
-To learn more about Next.js, take a look at the following resources:
+### 1. Install dependencies
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+cd frontend
+npm install
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 2. Environment variables
 
-## Deploy on Vercel
+Create `.env.local`:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```env
+NEXT_PUBLIC_API_URL=http://localhost:3000
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 3. Run frontend
+
+```bash
+npm run dev
+```
+
+Frontend runs at:
+
+[http://localhost:3001](http://localhost:3001)
+
+---
+
+## 🔌 API Endpoints
+
+### Get all leads
+
+GET /leads
+
+### Create a lead
+
+POST /leads
+
+Request body:
+
+```json
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "status": "New"
+}
+```
+
+---
+
+## 🧪 Lead Status Values
+
+- New
+- Engaged
+- Proposal Sent
+- Closed-Won
+- Closed-Lost
+
+---
+
+## 🗄️ Database Schema
+
+Lead model fields:
+
+- id (string, auto-generated)
+- name (string)
+- email (unique string)
+- status (string enum)
+- createdAt (timestamp)
+
+---
+
+## 🧰 Tech Stack
+
+- Next.js (App Router)
+- Tailwind CSS
+- shadcn/ui
+- Node.js + Express
+- Prisma ORM
+- PostgreSQL
+
+---
+
+## ▶️ How to Run Locally
+
+### Backend
+
+```bash
+cd backend
+npm install
+npm run dev
+```
+
+### Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+---
+
+## 📌 Notes
+
+- Ensure PostgreSQL is running locally
+- Backend must be running before frontend API calls work
+- Environment variables must be properly configured
+- Prisma migrations must be applied before using the database
+
+---
+
+## 📬 API Testing
+
+You can test the API using Postman:
+
+- POST /leads
+- GET /leads
